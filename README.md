@@ -8,3 +8,5 @@ contributors
   <li>Developer - Jay Chen</li>
   <li>QA - Joshi Joseph</li>
 </ul>
+
+This project is from CSC330 - Object-Oriented Software Design
