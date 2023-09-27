@@ -1,7 +1,7 @@
 <h1>330LMS</h1>
 330 Library Management System is a software application and platform designed to automate and streamline various tasks and processes involved in managing a library's resources, such as books, journals, magazines, and digital media. Its primary purpose is to efficiently organize, catalog, circulate, and track library materials while providing easy access to library users.
 
-<h2>contributors</h2>
+<h2>Contributors</h2>
 <ul>
   <li>Manager - Brian La Barbera </li>
   <li>Tech Lead - Syeda Gilani	 </li>
