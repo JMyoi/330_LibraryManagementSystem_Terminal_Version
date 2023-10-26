@@ -1,2 +1,2 @@
-public class Member extends User {
+public class Member extends User implements Library {
 }

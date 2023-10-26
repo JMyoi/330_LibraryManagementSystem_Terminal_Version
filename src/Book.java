@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Book {
+public class Book implements Library {
     // Class data members
     public int sNo;
     public String bookName;
