@@ -1,15 +1,20 @@
 
 public class Librarian extends User  {
-    int employeeId;
+    String employeeId;
     Librarian(){
-        employeeId =0;
+        employeeId ="";
     }
 
-    Librarian(int Id){
+    Librarian(String Id, String name){
+        super(name);
         employeeId = Id;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
+    }
+    public void printInfo(){
+        super.printInfo();
+        System.out.println("Employee Id: "+this.employeeId);
     }
 }

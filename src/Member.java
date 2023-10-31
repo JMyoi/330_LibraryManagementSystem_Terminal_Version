@@ -1,20 +1,21 @@
 import java.util.Random;
 
 public class Member extends User {
-    private int libraryCardNumber;
+    private String libraryCardNumber;
 
     public Member(){
-        libraryCardNumber = 0;
+        libraryCardNumber = "";
     }
-    public Member(int cardNumber){
+    public Member(String cardNumber, String name){
+        super(name);
         libraryCardNumber = cardNumber;
     }
 
-    public int getLibraryCardNumber() {
+    public String getLibraryCardNumber() {
         return libraryCardNumber;
     }
 
-    public void setLibraryCardNumber(int libraryCardNumber) {
+    public void setLibraryCardNumber(String libraryCardNumber) {
         this.libraryCardNumber = libraryCardNumber;
     }
 
@@ -22,8 +23,13 @@ public class Member extends User {
         Random random = new Random();
         return 10000 + random.nextInt(90000); // Generates a 5-digit random number
     }
+    public void printInfo(){
+        super.printInfo();
+        System.out.println("Library Card Number: "+this.libraryCardNumber);
+    }
 
-    @Override
+
+        @Override
     public String toString() {
         return "User Information:\n" +
                 "Library Card Number: " + libraryCardNumber + "\n";
