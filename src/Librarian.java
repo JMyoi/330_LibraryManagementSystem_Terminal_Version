@@ -1,8 +1,20 @@
-public class Librarian extends User implements Library{
 
-    public void addBook() {
-        Book newBook = new Book(); // Create a new Book object
-        books.add(newBook); // Add it to the library
+public class Librarian extends User  {
+    String employeeId;
+    Librarian(){
+        employeeId ="";
     }
 
+    Librarian(String Id, String name){
+        super(name);
+        employeeId = Id;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+    public void printInfo(){
+        super.printInfo();
+        System.out.println("Employee Id: "+this.employeeId);
+    }
 }
