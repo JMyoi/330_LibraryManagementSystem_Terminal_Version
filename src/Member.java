@@ -6,8 +6,8 @@ public class Member extends User {
     public Member(){
         libraryCardNumber = "";
     }
-    public Member(String cardNumber, String name){
-        super(name);
+    public Member(String cardNumber, String name, String pass){
+        super(name, pass);
         libraryCardNumber = cardNumber;
     }
 
@@ -27,7 +27,6 @@ public class Member extends User {
         super.printInfo();
         System.out.println("Library Card Number: "+this.libraryCardNumber);
     }
-
 
         @Override
     public String toString() {
