@@ -5,8 +5,8 @@ public class Librarian extends User  {
         employeeId ="";
     }
 
-    Librarian(String Id, String name){
-        super(name);
+    Librarian(String Id, String name, String pass){
+        super(name, pass);
         employeeId = Id;
     }
 

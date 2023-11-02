@@ -5,12 +5,30 @@ import java.util.Scanner;
 public class Library {
     private ArrayList<Book> books;
     private ArrayList<User> users;
+    private User currentUser;
     Scanner input = new Scanner(System.in);
 
     public Library(){
         books = new ArrayList<>();
         users = new ArrayList<>();
+        currentUser = new User();
         //add pre-existing users.
+    }
+    public String getCurrentUserName(){
+        return currentUser.getName();
+    }
+    public boolean Login(String userName, String pass){
+        for(User user: users){
+            if(user.getName().equals(userName) && user.authenticate(pass)){
+                currentUser = user;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        //if no users
+        return false;
     }
 
     //can only be done by librarians
@@ -31,17 +49,19 @@ public class Library {
     public void addUser() {
         System.out.println("Enter the Users Name");
         String name = input.nextLine();
+        System.out.println("Create a password: ");
+        String password = input.nextLine();
         System.out.println("Is the new user a Librarian or Member? Enter L or M ");
         String UserType = input.nextLine();
         if (UserType.equals("L")) {
             System.out.println("Enter the new Librarians employeeId");
             String ID = input.nextLine();
-            Librarian temp = new Librarian(ID, name);
+            Librarian temp = new Librarian(ID, name, password);
             users.add(temp);
         } else if (UserType.equals("M")) {
             System.out.println("Enter the new members card number: ");
             String cardNum = input.nextLine();
-            Member temp = new Member(cardNum, name);
+            Member temp = new Member(cardNum, name, password);
             users.add(temp);
         } else {
             System.out.println("INVALID INPUT");
