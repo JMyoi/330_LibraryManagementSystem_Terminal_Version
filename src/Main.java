@@ -32,13 +32,6 @@ public class Main {
         }
 
         while(true) {
-            System.out.println("Current user type: " + library.getCurrentUser().getClass().getSimpleName());
-            boolean isMember = library.getCurrentUser() instanceof Member;
-            boolean isLibrarian = library.getCurrentUser() instanceof Librarian;
-            System.out.println("is the current user an instance of Member?"+ isMember);
-            System.out.println("is the current user an instance of Librarian?"+ isLibrarian);
-
-
             //if the user is a librarian or a member display the appropriate menus
             if(library.getCurrentUser() instanceof Member){
                 Member currMember = (Member) library.getCurrentUser();
