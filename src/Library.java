@@ -17,6 +17,8 @@ public class Library {
     public String getCurrentUserName(){
         return currentUser.getName();
     }
+
+    public User getCurrentUser(){return currentUser;}
     public boolean Login(String userName, String pass){
         for(User user: users){
             if(user.getName().equals(userName) && user.authenticate(pass)){
