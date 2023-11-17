@@ -12,10 +12,12 @@ public class Library {
         books = new ArrayList<>();
         users = new ArrayList<>();
         currentUser = new User();
-        //add pre-existing users.
     }
     public String getCurrentUserName(){
         return currentUser.getName();
+    }
+    public User getCurrentUser(){
+        return currentUser;
     }
     public boolean Login(String userName, String pass){
         for(User user: users){
@@ -28,7 +30,11 @@ public class Library {
             }
         }
         //if no users
+        System.out.println("cannot login because there are no users.");
         return false;
+    }
+    public void Logout(){
+        currentUser = null;
     }
 
     //can only be done by librarians
