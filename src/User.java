@@ -1,3 +1,4 @@
+import java.util.UUID;
 public class User {
     private String name;
     private String password;
@@ -18,12 +19,11 @@ public class User {
     public boolean authenticate(String pass){
         return password.equals(pass);
     }
+    public UUID getId(){return null;}
 
-    public void setName(String name) {
-        this.name = name;
-    }
     public void printInfo(){
         System.out.println("Name: "+this.name);
     }
+
 
 }

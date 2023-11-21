@@ -5,36 +5,33 @@ import java.util.Scanner;
 public class Library {
     private ArrayList<Book> books;
     private ArrayList<User> users;
+    private ArrayList<Transaction> transactions;
     private User currentUser;
     Scanner input = new Scanner(System.in);
 
     public Library(){
         books = new ArrayList<>();
         users = new ArrayList<>();
+        transactions = new ArrayList<>();
         currentUser = new User();
-    }
-    public String getCurrentUserName(){
-        return currentUser.getName();
     }
     public User getCurrentUser(){
         return currentUser;
     }
     public boolean Login(String userName, String pass){
+        boolean isThere= false;
         for(User user: users){
+            //System.out.println("checking username: "+ userName+ " and password :"+pass+"with "+user.getName()+"and authentication: "+user.authenticate(pass));
             if(user.getName().equals(userName) && user.authenticate(pass)){
                 currentUser = user;
-                return true;
-            }
-            else{
-                return false;
+                isThere = true;
+                break;
             }
         }
-        //if no users
-        System.out.println("cannot login because there are no users.");
-        return false;
+        return isThere;
     }
     public void Logout(){
-        currentUser = null;
+        currentUser = new User();
         System.out.println("theoreticaly logged out");
         System.out.println(currentUser);
     }
@@ -62,14 +59,10 @@ public class Library {
         System.out.println("Is the new user a Librarian or Member? Enter L or M ");
         String UserType = input.nextLine();
         if (UserType.equals("L")) {
-            System.out.println("Enter the new Librarians employeeId");
-            String ID = input.nextLine();
-            Librarian temp = new Librarian(ID, name, password);
+            Librarian temp = new Librarian( name, password);
             users.add(temp);
         } else if (UserType.equals("M")) {
-            System.out.println("Enter the new members card number: ");
-            String cardNum = input.nextLine();
-            Member temp = new Member(cardNum, name, password);
+            Member temp = new Member(name, password);
             users.add(temp);
         } else {
             System.out.println("INVALID INPUT");
@@ -93,13 +86,65 @@ public class Library {
     public void displayBooks() {
         if (books.isEmpty()) {
             System.out.println("The library is empty.");
+            return;
         } else {
             System.out.println("********************Books in the library*************************");
-            for (Book book : books) {
-                book.printInfo();
+            for (int i = 0; i<books.size(); i++) {
+                System.out.println(i+1 +" ");
+                books.get(i).printInfo();
             }
             System.out.println("***************************************************************");
         }
+        if(currentUser instanceof Member) {
+            System.out.println("1: checkout a book\n2: return to menu");
+            int key = input.nextInt();
+            switch (key) {
+                case 1:
+                    System.out.println("Enter the book index you want to checkout: ");
+                    int bookNum = input.nextInt();
+                    if (bookNum <= 0 || bookNum > books.size()) {
+                        System.out.println("Invalid Index");
+                        break;
+                    } else {
+                        if(books.get(bookNum-1).noMoreCopies()){
+                            System.out.println("Sorry, No more copies of this book.");
+                        }else {
+                            Transaction newTransaction = new Transaction(currentUser.getId(), books.get(bookNum - 1).getIsbn());
+                            books.get(bookNum - 1).decrementCopy();
+                            transactions.add(newTransaction);
+                            System.out.println("Transaction Succesfull");
+                        }
+                    }
+                    break;
+                case 2:
+                    break;
+            }
+        }
+    }
+    public void printAllTransactions(){
+        for(int i = 0; i<transactions.size(); i++){
+            transactions.get(i).displayTransaction();
+        }
+        if(transactions.size() == 0){
+            System.out.println("No transactions");
+        }
+    }
+    public void printCurrentUserTransactions(){
+        if(transactions.isEmpty()){
+            System.out.println("You have no Transactions");
+            return;
+        }
+        for(int i = 0; i<transactions.size(); i++){
+            if(transactions.get(i).getUserId() == currentUser.getId()){
+                transactions.get(i).displayTransaction();
+            }
+        }
+        System.out.println("\t1: remove a book\n\t2: return to menu");
+        int choice = input.nextInt();
+        if(choice == 1){
+            System.out.println("in progress");
+        }
+
     }
 
 

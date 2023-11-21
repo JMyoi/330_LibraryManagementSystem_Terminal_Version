@@ -1,25 +1,25 @@
+import java.util.UUID;
 public class Transaction {
-    private int userId;
-    private int bookIsbn;
-    private int transactionId;
-    private int dateOfIssue;
-    private int dueDate;
-    private static int nextId;
-
+    private UUID userId;
+    private String bookIsbn;
+    //private int transactionId;
+    //private int dateOfIssue;
+    //private int dueDate;
+    //private static int nextId;
     Transaction(){
-        userId =0;
-        bookIsbn =0;
-        transactionId =0;
-        dateOfIssue =0;
-        dueDate = 0;
+        userId = null;
+        bookIsbn = null;
     }
-    Transaction(int user, int book){
+    Transaction(UUID user, String book){
         userId = user;
         bookIsbn = book;
 
     }
+    public UUID getUserId(){
+        return userId;
+    }
     public void displayTransaction(){
-
+        System.out.println("BookISBN: " + bookIsbn + "UserId: " +userId);
     }
 
 }

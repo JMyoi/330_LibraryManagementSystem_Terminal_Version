@@ -1,16 +1,16 @@
-
+import java.util.UUID;
 public class Librarian extends User  {
-    String employeeId;
+    UUID employeeId;
     Librarian(){
-        employeeId ="";
+        employeeId = UUID.randomUUID();
     }
 
-    Librarian(String Id, String name, String pass){
+    Librarian( String name, String pass){
         super(name, pass);
-        employeeId = Id;
+        employeeId = UUID.randomUUID();
     }
 
-    public String getEmployeeId() {
+    public UUID getId() {
         return employeeId;
     }
     public void printInfo(){
