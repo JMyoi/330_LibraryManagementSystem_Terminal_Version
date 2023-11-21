@@ -6,8 +6,6 @@ public class Main {
         while(true) {
             Scanner in = new Scanner(System.in);
 
-
-
             boolean invalid = false;
             while (!invalid) {
                 System.out.println("**************************************************\n" +
