@@ -35,6 +35,8 @@ public class Library {
     }
     public void Logout(){
         currentUser = null;
+        System.out.println("theoreticaly logged out");
+        System.out.println(currentUser);
     }
 
     //can only be done by librarians
