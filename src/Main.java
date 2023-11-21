@@ -7,7 +7,6 @@ public class Main {
             Scanner in = new Scanner(System.in);
 
 
-
             boolean invalid = false;
             while (!invalid) {
                 System.out.println("**************************************************\n" +
@@ -52,6 +51,7 @@ public class Main {
                             break;
                         case 3:
                             logout = true;
+                            library.Logout();
                             break;
                     }
 
@@ -70,6 +70,7 @@ public class Main {
                             break;
                         case 4:
                             logout = true;
+                            library.Logout();
                             break;
                     }
                 }
