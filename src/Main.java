@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.UUID;
 public class Main {
     public static void main(String[] args) {
-//        Library library = new Library();
+          Library library = new Library();
 //        UUID id = UUID.randomUUID();
 //        System.out.println("UUID" + id);
 //        System.out.println(id.getClass().getSimpleName());
