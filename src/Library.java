@@ -9,10 +9,17 @@ public class Library {
     private ArrayList<User> users;
     private ArrayList<Transaction> transactions;
     private User currentUser;
-    Scanner input = new Scanner(System.in);
+     //private Scanner input = new Scanner(System.in);
+
 
     public Library(){
-        loadDefaultUser();
+        try {
+            loadDefaultUser();
+        }
+        catch(Exception e){
+            System.out.println("file not found");
+            System.out.println(e.getMessage());
+        }
         books = new ArrayList<>();
         users = new ArrayList<>();
         transactions = new ArrayList<>();
@@ -51,6 +58,7 @@ public class Library {
     }
 
     public void addUser() {
+        Scanner input = new Scanner(System.in);//____________________________________________________
         System.out.println("Enter the Users Name");
         String name = input.nextLine();
         //make sure the userName is unique
@@ -76,6 +84,7 @@ public class Library {
     }
 
     public void addBook(){
+        Scanner input = new Scanner(System.in);//____________________________________________________
         String bookName;
         String authorName;
         String isbn;
@@ -90,6 +99,7 @@ public class Library {
     }
 
     public void displayBooks() {
+        Scanner input = new Scanner(System.in);//____________________________________________________
         if (books.isEmpty()) {
             System.out.println("The library is empty.");
             return;
@@ -151,6 +161,7 @@ public class Library {
         }
     }
     public void printCurrentUserTransactions(){
+        Scanner input = new Scanner(System.in);//____________________________________________________
         if(transactions.isEmpty()){
             System.out.println("No Transactions");
             return;
@@ -195,7 +206,18 @@ public class Library {
     }
 
     private void loadDefaultUser() throws FileNotFoundException {
-        File inFile = new File("defaultUsers");
+        File inFile = new File("defaultUsers.txt");
+        Scanner in = new Scanner(inFile);
+        while(in.hasNext()){
+            String userName = in.next();
+            String Password = in.next();
+            char type = (char) in.nextByte();
+            System.out.println("Name: "+userName+" password: "+Password+" type: "+type);
+
+        }
+
+
+        in.close();
     }
 
 }
