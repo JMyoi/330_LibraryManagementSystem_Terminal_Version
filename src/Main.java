@@ -2,20 +2,20 @@ import java.util.Scanner;
 import java.util.UUID;
 public class Main {
     public static void main(String[] args) {
-        Library library = new Library();
-        UUID id = UUID.randomUUID();
-        System.out.println("UUID" + id);
-        System.out.println(id.getClass().getSimpleName());
-        UUID id2 = UUID.randomUUID();
-        System.out.println("UUID" + id2);
-        System.out.println("comparing with compare to: "+ id.compareTo(id2));
-        System.out.println("comparing with equals(): "+ id.equals(id2));
-
-        System.out.println("making a copy and then comparing it again:");
-        UUID copy = id;
-        System.out.println("copy UUID" + copy);
-        System.out.println("comparing with compare to: "+ id.compareTo(copy));
-        System.out.println("comparing with equals(): "+ id.equals(copy));
+//        Library library = new Library();
+//        UUID id = UUID.randomUUID();
+//        System.out.println("UUID" + id);
+//        System.out.println(id.getClass().getSimpleName());
+//        UUID id2 = UUID.randomUUID();
+//        System.out.println("UUID" + id2);
+//        System.out.println("comparing with compare to: "+ id.compareTo(id2));
+//        System.out.println("comparing with equals(): "+ id.equals(id2));
+//
+//        System.out.println("making a copy and then comparing it again:");
+//        UUID copy = id;
+//        System.out.println("copy UUID" + copy);
+//        System.out.println("comparing with compare to: "+ id.compareTo(copy));
+//        System.out.println("comparing with equals(): "+ id.equals(copy));
 
 
         while(true) {
