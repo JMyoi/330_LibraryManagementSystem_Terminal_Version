@@ -4,9 +4,10 @@ public class Book  {
     private String isbn;
     private String bookName;
     private String authorName;
-
     private int numCopies;
-
+    public String getName(){
+        return bookName;
+    }
     public Book() {
         numCopies = 1;
         isbn = "";
@@ -20,16 +21,17 @@ public class Book  {
         return isbn;
     }
     public Book(String isbn, String bookName, String authorName){
-        numCopies = 1;
+        numCopies = 2;
         this.isbn = isbn;
         this.bookName = bookName;
         this.authorName = authorName;
     }
     public void printInfo(){
-        System.out.println("\tBookName = "+bookName+"\n\tauthor = "+authorName+"\n\tisbn = "+isbn);
+        System.out.println("\tBookName = "+bookName+"\n\tauthor = "+authorName+"\n\tISBN = "+isbn+"\n\tNumber of Copies = "+numCopies);
     }
 
     public void decrementCopy(){
         numCopies--;
     }
+    public void incrementCopy(){numCopies++;}
 }

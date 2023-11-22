@@ -1,6 +1,8 @@
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
 
 public class Library {
     private ArrayList<Book> books;
@@ -10,6 +12,7 @@ public class Library {
     Scanner input = new Scanner(System.in);
 
     public Library(){
+        loadDefaultUser();
         books = new ArrayList<>();
         users = new ArrayList<>();
         transactions = new ArrayList<>();
@@ -21,7 +24,6 @@ public class Library {
     public boolean Login(String userName, String pass){
         boolean isThere= false;
         for(User user: users){
-            //System.out.println("checking username: "+ userName+ " and password :"+pass+"with "+user.getName()+"and authentication: "+user.authenticate(pass));
             if(user.getName().equals(userName) && user.authenticate(pass)){
                 currentUser = user;
                 isThere = true;
@@ -32,8 +34,6 @@ public class Library {
     }
     public void Logout(){
         currentUser = new User();
-        System.out.println("theoreticaly logged out");
-        System.out.println(currentUser);
     }
 
     //can only be done by librarians
@@ -47,13 +47,19 @@ public class Library {
                 user.printInfo();
             }
             System.out.println("****************************************************");
-
         }
     }
 
     public void addUser() {
         System.out.println("Enter the Users Name");
         String name = input.nextLine();
+        //make sure the userName is unique
+        for (User user : users) {
+            if (user.getName().equals(name)) {
+                System.out.println("User name already taken please use another name.");
+                return;
+            }
+        }
         System.out.println("Create a password: ");
         String password = input.nextLine();
         System.out.println("Is the new user a Librarian or Member? Enter L or M ");
@@ -108,11 +114,25 @@ public class Library {
                     } else {
                         if(books.get(bookNum-1).noMoreCopies()){
                             System.out.println("Sorry, No more copies of this book.");
-                        }else {
-                            Transaction newTransaction = new Transaction(currentUser.getId(), books.get(bookNum - 1).getIsbn());
-                            books.get(bookNum - 1).decrementCopy();
-                            transactions.add(newTransaction);
-                            System.out.println("Transaction Succesfull");
+                        }
+                        //if the user already has this book then they cannot get it again.
+                        else{
+                            ArrayList<Transaction> myTransactions = getUserTransactions();
+                            boolean alreadyHave = false;
+                            for (Transaction myTransaction : myTransactions) {
+                                if (myTransaction.getBookIsbn().equals(books.get(bookNum - 1).getIsbn())) {
+                                    alreadyHave = true;
+                                    break;
+                                }
+                            }
+                            if(alreadyHave){
+                                System.out.println("You already have this book");
+                            }else {
+                                Transaction newTransaction = new Transaction(currentUser.getId(), currentUser.getName(), books.get(bookNum - 1).getIsbn(), books.get(bookNum - 1).getName());
+                                books.get(bookNum - 1).decrementCopy();
+                                transactions.add(newTransaction);
+                                System.out.println("Transaction successful");
+                            }
                         }
                     }
                     break;
@@ -123,30 +143,59 @@ public class Library {
     }
     public void printAllTransactions(){
         for(int i = 0; i<transactions.size(); i++){
-            transactions.get(i).displayTransaction();
+            System.out.println(i+1);
+            System.out.println(transactions.get(i).toString());
         }
-        if(transactions.size() == 0){
+        if(transactions.isEmpty()){
             System.out.println("No transactions");
         }
     }
     public void printCurrentUserTransactions(){
         if(transactions.isEmpty()){
-            System.out.println("You have no Transactions");
+            System.out.println("No Transactions");
             return;
         }
-        for(int i = 0; i<transactions.size(); i++){
-            if(transactions.get(i).getUserId() == currentUser.getId()){
-                transactions.get(i).displayTransaction();
-            }
+        ArrayList<Transaction> myTransactions = getUserTransactions();
+        System.out.println("*******************************************************");
+        for(int i = 0; i<myTransactions.size(); i++){
+            System.out.println(i+1);
+            System.out.println(transactions.get(i).getBookInfo());
         }
+        if(myTransactions.isEmpty()){
+            System.out.println("You have no transactions");
+            return;
+        }
+        System.out.println("*******************************************************");
+
         System.out.println("\t1: remove a book\n\t2: return to menu");
         int choice = input.nextInt();
         if(choice == 1){
-            System.out.println("in progress");
+            System.out.println("which numbered index do you want to remove: ");
+            int key = input.nextInt();
+            Transaction removeThisTransaction = myTransactions.get(key-1);
+            transactions.remove(removeThisTransaction);
+            System.out.println("Successfully removed "+removeThisTransaction.getBookName());
+            //put the copy back into the library by incrementing the count of the book
+            for(int i = 0; i<books.size(); i++){
+                if(books.get(i).getIsbn().equals(removeThisTransaction.getBookIsbn())){
+                    books.get(i).incrementCopy();
+                }
+            }
         }
-
+    }
+    //returns an array of the currently logged-in users transactions.
+    private ArrayList<Transaction> getUserTransactions(){
+        ArrayList<Transaction> myTransactions = new ArrayList<>();
+        for(int i = 0; i<transactions.size(); i++){
+            if(transactions.get(i).getUserId() == currentUser.getId()){
+                myTransactions.add(transactions.get(i));
+            }
+        }
+        return myTransactions;
     }
 
-
+    private void loadDefaultUser() throws FileNotFoundException {
+        File inFile = new File("defaultUsers");
+    }
 
 }
