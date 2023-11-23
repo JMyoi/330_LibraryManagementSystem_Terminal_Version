@@ -1,36 +1,25 @@
-import java.util.Random;
+import java.util.UUID;
 
 public class Member extends User {
-    private String libraryCardNumber;
+    private UUID libraryCardNumber;
 
-    public Member(){
-        libraryCardNumber = "";
+
+    public Member() {
+        libraryCardNumber = UUID.randomUUID();
     }
-    public Member(String cardNumber, String name, String pass){
+
+    public Member(String name, String pass) {
         super(name, pass);
-        libraryCardNumber = cardNumber;
+        libraryCardNumber = UUID.randomUUID();
     }
 
-    public String getLibraryCardNumber() {
+    public UUID getId() {
         return libraryCardNumber;
     }
 
-    public void setLibraryCardNumber(String libraryCardNumber) {
-        this.libraryCardNumber = libraryCardNumber;
-    }
-
-    private int generateRandomLibraryCardNumber() {
-        Random random = new Random();
-        return 10000 + random.nextInt(90000); // Generates a 5-digit random number
-    }
-    public void printInfo(){
+    public void printInfo() {
         super.printInfo();
-        System.out.println("Library Card Number: "+this.libraryCardNumber);
+        System.out.println("Library Card Number: " + libraryCardNumber);
     }
 
-        @Override
-    public String toString() {
-        return "User Information:\n" +
-                "Library Card Number: " + libraryCardNumber + "\n";
-    }
 }
