@@ -1,21 +1,41 @@
+import java.io.*;
 import java.util.Scanner;
-import java.util.UUID;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
           Library library = new Library();
-//        UUID id = UUID.randomUUID();
-//        System.out.println("UUID" + id);
-//        System.out.println(id.getClass().getSimpleName());
-//        UUID id2 = UUID.randomUUID();
-//        System.out.println("UUID" + id2);
-//        System.out.println("comparing with compare to: "+ id.compareTo(id2));
-//        System.out.println("comparing with equals(): "+ id.equals(id2));
+
+
+//        try {
+//            File inFile = new File("defaultUsers.txt");
+//            Scanner in = new Scanner(inFile);
+//            while(in.hasNext()){
+//                String userName = in.next();
+//                String Password = in.next();
+//                String type = in.next();
+//                System.out.println("Name: "+userName+" password: "+Password+" type: "+type);
+//            }
 //
-//        System.out.println("making a copy and then comparing it again:");
-//        UUID copy = id;
-//        System.out.println("copy UUID" + copy);
-//        System.out.println("comparing with compare to: "+ id.compareTo(copy));
-//        System.out.println("comparing with equals(): "+ id.equals(copy));
+//            in.close();
+//        }
+//        catch(FileNotFoundException e){
+//            System.out.println("file not found");
+//            System.out.println(e.getMessage());
+//        }
+
+//        try {
+//            FileReader reader = new FileReader("defaultUsers.txt");
+//            int data = reader.read();
+//            while(data!=-1){
+//                System.out.print((char) data);
+//                data = reader.read();
+//            }
+//        }
+//        catch(FileNotFoundException e){
+//            System.out.println("file not found");
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
 
         while(true) {

@@ -9,7 +9,7 @@ public class Book  {
         return bookName;
     }
     public Book() {
-        numCopies = 1;
+        numCopies = 0;
         isbn = "";
         bookName ="";
         authorName ="";
@@ -20,8 +20,8 @@ public class Book  {
     public String getIsbn(){
         return isbn;
     }
-    public Book(String isbn, String bookName, String authorName){
-        numCopies = 2;
+    public Book(String isbn, String bookName, String authorName, int copies){
+        numCopies = copies;
         this.isbn = isbn;
         this.bookName = bookName;
         this.authorName = authorName;

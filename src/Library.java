@@ -13,17 +13,18 @@ public class Library {
 
 
     public Library(){
-        try {
-            loadDefaultUser();
-        }
-        catch(Exception e){
-            System.out.println("file not found");
-            System.out.println(e.getMessage());
-        }
         books = new ArrayList<>();
         users = new ArrayList<>();
         transactions = new ArrayList<>();
         currentUser = new User();
+        try {
+            loadDefaultUser();
+            loadDefaultBooks();
+        }
+        catch(FileNotFoundException e){
+            System.out.println("file not found");
+            System.out.println(e.getMessage());
+        }
     }
     public User getCurrentUser(){
         return currentUser;
@@ -88,13 +89,16 @@ public class Library {
         String bookName;
         String authorName;
         String isbn;
+        int copies;
         System.out.println("Enter the name of the book: ");
         bookName = input.nextLine();
         System.out.println("Enter the name of the author: ");
         authorName = input.nextLine();
         System.out.println("Enter the ISBN: ");
         isbn = input.nextLine();
-        Book newBook = new Book(isbn, bookName, authorName);
+        System.out.println("Enter the number of copies: ");
+        copies = input.nextInt();
+        Book newBook = new Book(isbn, bookName, authorName,copies);
         books.add(newBook);
     }
 
@@ -211,13 +215,29 @@ public class Library {
         while(in.hasNext()){
             String userName = in.next();
             String Password = in.next();
-            char type = (char) in.nextByte();
-            System.out.println("Name: "+userName+" password: "+Password+" type: "+type);
-
+            String type = in.next();
+            if (type.equals("L")) {
+                Librarian temp = new Librarian( userName, Password);
+                users.add(temp);
+            } else if (type.equals("M")) {
+                Member temp = new Member(userName, Password);
+                users.add(temp);
+            }
         }
 
-
         in.close();
+    }
+    private void loadDefaultBooks() throws FileNotFoundException{
+        File inFile = new File("defaultBooks.txt");
+        Scanner in = new Scanner(inFile);
+        while(in.hasNext()){
+            String BookName = in.nextLine();
+            String author = in.nextLine();
+            String ISBN = in.nextLine();
+            String amount = in.nextLine();
+
+            System.out.println("name: "+BookName+"author: "+author+"ISBN: "+ISBN+"amount: "+amount);
+        }
     }
 
 }
