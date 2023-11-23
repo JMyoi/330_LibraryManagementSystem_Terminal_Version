@@ -235,7 +235,8 @@ public class Library {
             String author = in.nextLine();
             String ISBN = in.nextLine();
             String amount = in.nextLine();
-
+            Book temp = new Book(ISBN, BookName, author, Integer.parseInt(amount));
+            books.add(temp);
             //System.out.println("name: "+BookName+"author: "+author+"ISBN: "+ISBN+"amount: "+amount);
         }
     }
