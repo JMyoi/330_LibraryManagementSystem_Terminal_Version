@@ -3,7 +3,7 @@
 <p>The terminal version of this program was written as a foundation for the GUI version of this application which can be accessed <a href = ">https://github.com/JMyoi/330LibraryManagementSystem_GUI_Version">HERE</a></p>
 <p>Both versions of this project were written in the IntelliJ IDEA</p>
 <p>The terminal version of this program is a menu-type interface where the user selects the number to its respective options.</p>
-<img src = "" alt = "Example Of Terminal">
+<img src = "ImageOfTerminal.png" alt = "Example Of Terminal">
 <h2>User Stories</h2>
 As a User
 <ul>
