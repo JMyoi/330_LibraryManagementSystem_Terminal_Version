@@ -27,7 +27,7 @@ information.</li>
 members.</li>
   <li>As a librarian, I want to be able to add a new book to the library.</li>
   <li>As a Librarian, I want to be able to view all the users in the library.
-This project is for CSC330 - Object-Oriented Software Design as the final project of the class.</li>
+</li>
 </ul>
 
 <h3>Adversity; Learning JavaFX First: A Lesson in Efficiency</h3>
@@ -44,3 +44,4 @@ prioritize JavaFX learning alongside the application's development.
   <li>Joshi Joseph - QA</li>
   <li>Brain LaBarbera - Manager/TechLead</li>
 </ul>
+<p>This project is for CSC330 - Object-Oriented Software Design as the final project of the class.</p>
